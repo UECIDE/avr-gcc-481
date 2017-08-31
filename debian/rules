@@ -15,6 +15,7 @@ VER=4.8.1
 UVER=481
 COMPILER=avr-gcc
 GCCVER=arduino5
+LOGO=Atmel_logo.svg
 
 ifeq (${DEB_HOST_ARCH},linux-amd64)
 	URL=http://downloads.arduino.cc/tools/${COMPILER}-${VER}-${GCCVER}-x86_64-pc-linux-gnu.tar.bz2
@@ -86,5 +87,12 @@ override_dh_auto_clean:
 
 override_dh_auto_install:
 	mkdir -p debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}
+	mkdir -p debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons
 	cp -RL build/avr/* debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/
 	cp debian/uecide/compiler.txt debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/
+	convert debian/uecide/${LOGO} -resize 128 -alpha remove -background white debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons/logo128.png
+	convert debian/uecide/${LOGO} -resize 64 -alpha remove -background white debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons/logo64.png
+	convert debian/uecide/${LOGO} -resize 48 -alpha remove -background white debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons/logo48.png
+	convert debian/uecide/${LOGO} -resize 32 -alpha remove -background white debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons/logo32.png
+	convert debian/uecide/${LOGO} -resize 22 -alpha remove -background white debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons/logo22.png
+	convert debian/uecide/${LOGO} -resize 16 -alpha remove -background white debian/${COMPILER}-${UVER}/compilers/${COMPILER}-${UVER}/icons/logo16.png

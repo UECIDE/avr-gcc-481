@@ -48,3 +48,9 @@ options.warnings.err.flags=-Wall::-Werror
 options.warnings.off.name=Suppress warnings
 options.warnings.off.flags=-w
 
+icon.128=icons/logo128.png
+icon.64=icons/logo64.png
+icon.48=icons/logo48.png
+icon.32=icons/logo32.png
+icon.22=icons/logo22.png
+icon.16=icons/logo16.png
