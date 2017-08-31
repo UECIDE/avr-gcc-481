@@ -2,8 +2,8 @@
 
 my $package = "unknown";
 
-my $ver = 4;
-my $maj = 8;
+my $ver = 0;
+my $maj = 0;
 my $min = 0;
 
 my $out = "";
@@ -28,16 +28,18 @@ while (my $l = <LOG>) {
     $add .= " -- $author <$email>  $time\n";
     $add .= "\n";
     $min++;
-    if ($min == 100) {
+    if ($min == 10) {
         $min = 0;
         $maj++;
+    }
+    if ($maj == 10) {
+        $maj = 0;
+        $ver++;
     }
     $out = $add . $out;
 }
 close(LOG);
 
-
-my $oldMD5 = `md5sum debian/changelog`;
 open(CL, ">debian/changelog");
 print CL $out;
 close(CL);
